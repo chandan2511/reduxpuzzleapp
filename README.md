@@ -1,1 +1,1 @@
-This puzzle uses eract and redux.
+This puzzle uses react and redux.
