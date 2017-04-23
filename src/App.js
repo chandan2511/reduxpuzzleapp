@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import './App.css';
 import * as gameActions from './gameActions';
 import { bindActionCreators } from 'redux';
@@ -71,7 +72,11 @@ export class App extends Component {
             <div>
                 <div id="game-board">
                     {this.props.tiles.map(function (tile, position) {
-                        return (<Tile tileClass={tile ? 'tile' : 'tile no-tile'} status={tile} key={position} tileClick={(event) => this.tileClick(event.target, position, tile)} />);
+                        return (<Tile 
+                        tileClass={tile ? 'tile' : 'tile no-tile'} 
+                        status={tile} key={position} 
+                        tileClick={(event) => this.tileClick(event.target, position, tile)} 
+                        />);
                     }, this)}
                 </div>
                 <Menu
@@ -96,7 +101,10 @@ function mapDispatchToProps(dispatch) {
 function Tile(props) {
     return <div className={props.tileClass} onClick={props.tileClick}>{props.status}</div>;
 }
-
+Tile.PropTypes = {
+    tileClass:PropTypes.string.isRequired,
+    tileClick:PropTypes.func.isRequired
+}
 function Menu(props) {
     return (
         <div id="menu">
@@ -104,6 +112,11 @@ function Menu(props) {
             <a className={props.winClass} onClick={props.restart}>Restart</a>
         </div>
     );
+}
+Menu.PropTypes = {
+    status:PropTypes.string.isRequired,
+    winClass:PropTypes.string.isRequired,
+    restart:PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
