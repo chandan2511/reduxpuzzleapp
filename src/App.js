@@ -5,7 +5,7 @@ import * as gameActions from './gameActions';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 
-export class App extends Component {
+class App extends Component {
     constructor(props,context) {
         super(props,context);
         this.restartGame = this.restartGame.bind(this);
